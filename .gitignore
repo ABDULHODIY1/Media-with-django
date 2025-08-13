@@ -1,0 +1,12 @@
+.venv
+venv
+ImageAIgenerator
+media
+DemoFrontend
+.vscode
+astronaut.png
+astronaut.webp
+db.sqlite3
+icons.html
+image.jpg
+whatsthis.py

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GEN-PID Chat</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="chat-box" id="chatBox"></div>
+        <div class="inputcont_">
+            <form id="promptForm">
+                <input 
+                    type="text" 
+                    id="promptInput" 
+                    placeholder="Write a prompt..." 
+                    autocomplete="off"
+                    required />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <center>
+            <p style="color: rgb(94, 94, 94);">make post/reel/videos with <a href="#" style="color: rgb(94, 94, 94);">pid.com</a></p>
+        </center>
+    </div>
+
+    <script>
+        document.getElementById("promptForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const input = document.getElementById("promptInput");
+    const chatBox = document.getElementById("chatBox");
+
+    const promptText = input.value.trim();
+    if (!promptText) return;
+
+    // 1. Foydalanuvchi xabari
+    const userMsg = document.createElement("div");
+
+    userMsg.className = "message user";
+    userMsg.textContent = promptText;
+    chatBox.appendChild(userMsg);
+
+    // 2. GIF loading rasmi (botdan javob)
+    const botMsg = document.createElement("div");
+    botMsg.className = "message-bot-gift";
+    const loadingImg = document.createElement("img");
+    loadingImg.src = "./929c343f5b058fcb53713f3cad5474cd.gif"; // or your own hosted gif
+    loadingImg.className = "loading-gif";
+    botMsg.appendChild(loadingImg);
+    chatBox.appendChild(botMsg);
+
+    // Scroll pastga
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // 3. Keyin GIF ni o‘chirib, "javob" ko‘rsatamiz
+    setTimeout(() => {
+        botMsg.removeChild(loadingImg);
+        botMsg.textContent = `✅ Generated: "${promptText.toUpperCase()}"`;
+    }, 24000); // 2 sekundlik effekt
+
+    input.value = "";
+});
+
+    </script>
+</body>
+</html>

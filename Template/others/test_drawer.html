@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disappearing Drawer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .drawer-transition {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .hamburger-line {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .open .line-1 {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .open .line-2 {
+      opacity: 0;
+    }
+
+    .open .line-3 {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen overflow-x-hidden">
+
+  <!-- Hamburger Button -->
+
+</body>
+</html>

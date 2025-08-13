@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="search_deep">
+    <input type="text" id="input" placeholder="Search videos...." />
+</div>
+
+<div class="G29dLm8y">  {# Masonry-style gallery #}
+    {% for post in posts %}
+    <div class="f8RkXl92">
+        {% if post.image %}
+            <img class="yT7lPz3x" src="{{ post.image.url }}" alt="Post Image">
+        {% elif post.video %}
+            <video class="yT7lPz3x" controls>
+                <source src="{{ post.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% endif %}
+        <div class="T19cV0">
+            @{{ post.author.username }} |
+            {{ post.like_typer }} ❤️ |
+            {{ post.views_typer }} 👁 |
+            {{ post.comment_count }} 💬
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

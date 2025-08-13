@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            animation: fadeOut 0.8s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        .login_sjfne {
+            z-index: 10;
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            padding: 20px;
+            background-color: #111;
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-radius: 10px;
+            border: #f3f1f4 solid 0.01px;
+        }
+
+        .login_cnt_hsdsdbj332 {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .login_cnt_hsdsdbj332 h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        form p {
+            margin: 0;
+            display: grid;
+            justify-content: center;
+        }
+
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="email"] {
+            padding: 10px;
+            border-radius: 22px;
+            font-size: 1rem;
+            border: white 0.1px solid;
+            background: none;
+            color: #f3f1f4;
+
+
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 22px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.5s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #000000;
+            color: #f3f1f4;
+        }
+
+        p a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login_sjfne {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            form input[type="text"],
+            form input[type="password"],
+            form input[type="email"] {
+                font-size: 0.9rem;
+            }
+
+            button[type="submit"] {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login_sjfne">
+        <div class="login_cnt_hsdsdbj332">
+            <h2 style="position: relative; bottom: 10px;">Welcome Back</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                {{ field.errors }}
+                {{ field }}
+                {% endfor %}
+                <button type="submit">login</button>
+            </form>
+
+            <p style="display:grid; width: 100%; justify-content: center; "><a style="color: white;" href="{% url 'accaunts:register' %}">Register</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', function (e) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.style.left = e.pageX + 'px';
+            dot.style.top = e.pageY + 'px';
+            dot.style.color = "white"
+            document.body.appendChild(dot);
+
+            setTimeout(() => {
+                dot.remove();
+            }, 1000); // .lar 0.8 sekundda yo‘q bo‘ladi
+        });
+    </script>
+</body>
+
+</html>

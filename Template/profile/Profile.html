@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if is_owner %}
+<div class="settings_xts">
+    <button id="x_set"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+        </svg></button>
+    <ul>
+        <li>
+            <a href="#" class="settings_btn_link">Edit My Profiile</a>
+            <a href="#" class="settings_btn_link">About My Accaunt</a>
+            <a href="#" class="settings_btn_link">AI Blogs Generator Settings</a>
+            <a href="#" class="settings_btn_link">MyTheme</a>
+            <a href="#" class="settings_btn_link">Verify <span style="color:cornflowerblue;"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                    </svg></span></a>
+            <a href="#" class="settings_btn_link">media quality</a>
+            <a href="#" class="settings_btn_link">secret chat</a>
+            <a href="#" class="settings_btn_link">channels</a>
+            <a href="#" class="settings_btn_link">Chat</a>
+            <a href="#" class="settings_btn_link">group</a>
+            <a href="#" class="settings_btn_link">details</a>
+            <a href="#" class="settings_btn_link">AI Asistant Settings</a>
+            <a href="#" class="settings_btn_link">support</a>
+            <form action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" id="Log_out">Logout</button>
+            </form>
+        </li>
+    </ul>
+
+</div>
+{% endif %}
+
+<div class="profile_continer">
+    {% if is_owner %}
+    <div class="popups">
+        <button id="bt_set"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                class="bi bi-gear" viewBox="0 0 16 16">
+                <path
+                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                <path
+                    d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+            </svg>
+        </button>
+    </div>
+    {% endif %}
+    {% if profile_user.profile_picture %}
+        <img src="{{ profile_user.profile_picture.url }}" id="Profile_image">
+    {% else %}
+        <img src="{% static 'image/default_user_image.png' %}" id="Profile_image">
+    {% endif %}
+    <label for="Profile_image">
+        @{{ profile_user.username }}
+        {% if profile_user.username == "thony" %}
+        <span style="color:cornflowerblue;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+                <path
+                    d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+            </svg></span> <!-- kok check belgi -->
+        {% endif %}
+    </label>
+
+    {% if profile_user.username == "thony" %}
+    <div class="ownerStack">
+        <strong id="filter" style="color: cornflowerblue;">Owner of PID</strong>
+    </div>
+    {% endif %}
+
+    <h1 id="Username">@{{ profile_user.username }}</h1>
+    <p id="BIO">{{ profile_user.bio|default:"No bio available." }}</p>
+
+
+    {% if not is_owner %}
+    <a id="subscribe">Subscribe</a>
+    {% endif %}
+
+    <div class="followers">
+        <h1>0</h1>
+        <p id="followers">followers</p>
+    </div>
+</div>
+
+<div id="Blog_container_grid">
+    {% for post in posts %}
+    <div class="blog_card_grid">
+        {% if post.image %}
+        <a href="{% url 'app:prof' username=post.author.username %}" target="_blank">
+            <p id="auth">@{{ post.author.username }}</p>
+        </a>
+        <div class="media_wrapper">
+            <img src="{{ post.image.url }}" alt="Post image">
+        </div>
+        {% elif post.video %}
+        <div class="media_wrapper">
+            <video controls>
+                <source src="{{ post.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p>No posts yet.</p>
+    {% endfor %}
+
+    <script src="{% static 'js/set.js' %}"></script>
+</div>
+{% endblock content %}
