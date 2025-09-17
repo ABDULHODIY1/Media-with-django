@@ -58,7 +58,7 @@
         </svg></button>
       <div class="btns">
         <a href="{% url 'app:video_post' %}" id="video_a_btn">video upload</a>
-        <a href="#" id="photo_a_btn">photo upload</a>
+        <a href="{% url 'app:photo_post' %}" id="photo_a_btn">photo upload</a>
         <a href="#" id="video_a_btnWAi">video with post maker ai</a>
         <a href="#" id="photo_a_btnWAi">photo with post maker ai</a>
       </div>
@@ -86,7 +86,7 @@
         {% endif %}
 
         {% if post.video %}
-        <video class="video_size_post" controls autoplay>
+        <video class="video_size_post" muted autoplay playsinline>
           <source src="{{ post.video.url }}" id="framesize"    media="screen"   type="video/mp4" >
           Your browser does not support the video tag.
         </video>
@@ -172,5 +172,6 @@
 </body>
 <script src="{% static 'js/upload.js' %}"></script>
 <script src="{% static 'js/LikeSave.js' %}"></script>
-
+<script src="{% static 'js/form_id_giver.js' %}"></script>
+<script src="{%static 'js/video_set.js' %}"></script>
 </html>

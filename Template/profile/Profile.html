@@ -11,7 +11,7 @@
         </svg></button>
     <ul>
         <li>
-            <a href="#" class="settings_btn_link">Edit My Profiile</a>
+            <a href="{% url 'users:edprof' request.user.pk %}" class="settings_btn_link">Edit My Profile</a>
             <a href="#" class="settings_btn_link">About My Accaunt</a>
             <a href="#" class="settings_btn_link">AI Blogs Generator Settings</a>
             <a href="#" class="settings_btn_link">MyTheme</a>
@@ -108,7 +108,7 @@
         {% endif %}
     </div>
     {% empty %}
-    <p>No posts yet.</p>
+    <p>You have not posts yet.</p>
     {% endfor %}
 
     <script src="{% static 'js/set.js' %}"></script>

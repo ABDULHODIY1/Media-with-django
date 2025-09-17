@@ -47,10 +47,3 @@ python manage.py migrate
 ```commandline
 python manage.py runserver
 ```
-
-
-# Media-with-django
-# Media-with-django
-# Media-with-django
-# Media-with-django
-# Media-with-django
