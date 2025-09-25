@@ -38,5 +38,5 @@ Foydalanuvchilar **video blog** va **rasm shaklidagi postlar** joylashi, izohlas
 
 1. Loyihani klon qiling:
    ```bash
-   git clone https://github.com/username/pid.git
+   https://github.com/ABDULHODIY1/Media-with-django.git
    cd pid
