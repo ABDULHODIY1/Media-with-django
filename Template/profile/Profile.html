@@ -29,6 +29,12 @@
             <a href="#" class="settings_btn_link">details</a>
             <a href="#" class="settings_btn_link">AI Asistant Settings</a>
             <a href="#" class="settings_btn_link">support</a>
+            {% if request.user.is_staff %}
+            <div class="total-users">
+                <p>total users {{ total_users }}</p>
+            </div>
+            {% endif %}
+
             <form action="{% url 'users:logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit" id="Log_out">Logout</button>
@@ -53,9 +59,9 @@
     </div>
     {% endif %}
     {% if profile_user.profile_picture %}
-        <img src="{{ profile_user.profile_picture.url }}" id="Profile_image">
+    <img src="{{ profile_user.profile_picture.url }}" id="Profile_image">
     {% else %}
-        <img src="{% static 'image/default_user_image.png' %}" id="Profile_image">
+    <img src="{% static 'image/default_user_image.png' %}" id="Profile_image">
     {% endif %}
     <label for="Profile_image">
         @{{ profile_user.username }}
@@ -64,7 +70,7 @@
                 fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
                 <path
                     d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-            </svg></span> <!-- kok check belgi -->
+            </svg></span>
         {% endif %}
     </label>
 
@@ -79,11 +85,17 @@
 
 
     {% if not is_owner %}
-    <a id="subscribe">Subscribe</a>
+    <a id="subscribe" data-username="{{ profile_user.username }}" href="javascript:void(0);">
+        {% if is_following %}
+        Unsubscribe
+        {% else %}
+        Subscribe
+        {% endif %}
+    </a>
     {% endif %}
 
     <div class="followers">
-        <h1>0</h1>
+        <h1 id="followers-count">{{ profile_user.followers.count }}</h1>
         <p id="followers">followers</p>
     </div>
 </div>
@@ -100,7 +112,7 @@
         </div>
         {% elif post.video %}
         <div class="media_wrapper">
-            <video controls>
+            <video class="video_size_post" muted autoplay playsinline controls>
                 <source src="{{ post.video.url }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -112,5 +124,56 @@
     {% endfor %}
 
     <script src="{% static 'js/set.js' %}"></script>
+    <script !src="">
+        document.addEventListener("DOMContentLoaded", function () {
+            const subscribeBtn = document.getElementById("subscribe");
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener("click", function () {
+                    const username = this.dataset.username;
+
+                    fetch(`/follow-toggle/${username}/`, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken"),
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                this.textContent = data.is_following ? "Unsubscribe" : "Subscribe";
+
+
+
+                                const followersCount = document.getElementById("followers-count");
+                                if (followersCount) {
+                                    followersCount.textContent = data.followers_count;
+                                }
+                            }
+                        })
+                        .catch(err => console.error("Follow toggle error:", err));
+                });
+            }
+        });
+
+
+
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                const cookies = document.cookie.split(";");
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+
 </div>
 {% endblock content %}

@@ -1,6 +1,8 @@
+from django.urls import reverse
 from django.db import models
 from django.conf import settings
-from django.urls import reverse
+from pydub.utils import mediainfo
+
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -14,20 +16,16 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('app:home')
 
-    def _number_typer(self, number):
-        """Helper method to convert number to short format like 1.2K, 1M"""
-        if number < 1000:
-            return str(number)
-        elif number < 1_000_000:
-            return f"{number / 1000:.1f}K".rstrip('0').rstrip('.')
-        else:
-            return f"{number / 1_000_000:.1f}M".rstrip('0').rstrip('.')
+    @property
+    def total_likes(self):
+        return self.like_users.count()
 
-    def is_media(self):
-        return self.image or self.video
+    @property
+    def total_saves(self):
+        return self.saves.count()
 
     def __str__(self):
-        return f"Posted by {self.author.username} at {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        return f"Posted by {self.author} at {self.created_at}"
 
 
 class Like(models.Model):
@@ -35,16 +33,58 @@ class Like(models.Model):
     post = models.ForeignKey(Post, related_name='like_users', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('user', 'post')
+
     def __str__(self):
         return f"{self.user.username} liked {self.post.id}"
 
 
-class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    text = models.TextField()
+class Save(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='saves', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.author.username} - {self.text[:20]}"
+    class Meta:
+        unique_together = ('user', 'post')
 
+    def __str__(self):
+        return f"{self.user.username} saved {self.post.id}"
+
+
+class Comment(models.Model):
+    post = models.ForeignKey("Post", on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField(blank=True, null=True)
+    voice = models.FileField(upload_to='voices/', blank=True, null=True)  # voice comment
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        if self.voice:
+            info = mediainfo(self.voice.path)
+            duration = float(info['duration'])
+            if duration > 15:
+                from django.core.exceptions import ValidationError
+                raise ValidationError("Voice comment 15 soniyadan uzun bo'lishi mumkin emas!")
+
+    def __str__(self):
+        return f"{self.author.username} - {self.text[:20] if self.text else '🎤 Voice Comment'}"
+
+class Follow(models.Model):
+    follower = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="following",
+        on_delete=models.CASCADE
+    )
+    following = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="followers",
+        on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("follower", "following")
+
+    def __str__(self):
+        return f"{self.follower} → {self.following}"

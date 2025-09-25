@@ -8,6 +8,7 @@
     <title>Upload Video</title>
 </head>
 {% block content %}
+
 <body>
     <form method="post" enctype="multipart/form-data" style="position:relative; top:300px;">
         {% csrf_token %}{{form.as_p}}
@@ -16,4 +17,5 @@
     </form>
 </body>
 {% endblock content%}
+
 </html>

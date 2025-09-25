@@ -1,11 +1,233 @@
-{% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<h2>Edit {{ user.username }} profile</h2>
+<style>
+  body {
+    background-color: rgb(0, 0, 0);
+    height: max-content;
+  }
 
-<form method="post" enctype="multipart/form-data">
+  .edit-wrap {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 22px;
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    color: #d0d0d0;
+  }
+
+  .edit-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+
+  .edit-head h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .avatar-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #0f0f0f;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .form-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .form-label {
+    width: 140px;
+    color: #9fbf9b;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  .form-control {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #ddd;
+    font-size: 14px;
+  }
+
+  textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+    padding-top: 12px;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: transparent;
+    color: #ddd;
+  }
+
+  .btn-primary {
+    background: linear-gradient(180deg, rgba(0, 251, 4, 0.12), rgba(0, 251, 4, 0.06));
+    color: #030303;
+    border: 1px solid rgba(0, 251, 4, 0.9);
+    font-weight: 700;
+  }
+
+  .field-errors {
+    color: #ff8b8b;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .note {
+    color: #9a9a9a;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  @media (max-width:800px) {
+    .form-label {
+      width: 110px;
+    }
+
+    .form-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .form-label {
+      margin-bottom: 6px;
+    }
+  }
+</style>
+
+<div class="edit-wrap">
+  <div class="edit-head">
+    <div id="avatarPreview" class="avatar-preview"
+      style="background-image: url({% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'image/default_user_image.png' %}{% endif %});">
+    </div>
+    <div>
+      <h2>Edit profile — {{ user.username }}</h2>
+      <div class="note">Fayl yuklaganingizda preview avtomatik yangilanadi. JPG/PNG, 5MB gacha.</div>
+    </div>
+  </div>
+
+  {# show non-field errors #}
+  {% if form.non_field_errors %}
+  <div class="field-errors">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data" id="editProfileForm" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+    <div class="form-row">
+      <label class="form-label" for="id_username">Username</label>
+      <div style="flex:1">
+        <input class="form-control" id="id_username" name="{{ form.username.html_name }}" type="text"
+          value="{{ form.username.value|default:user.username }}" required />
+        {% if form.username.errors %}
+        <div class="field-errors">{{ form.username.errors|join:", " }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Name</label>
+      <div style="flex:1; display:flex; gap:8px;">
+        <input class="form-control" id="id_first_name" name="{{ form.first_name.html_name }}" type="text"
+          value="{{ form.first_name.value|default:user.first_name }}" placeholder="First name" />
+        <input class="form-control" id="id_last_name" name="{{ form.last_name.html_name }}" type="text"
+          value="{{ form.last_name.value|default:user.last_name }}" placeholder="Last name" />
+      </div>
+      <div style="width:1px;"></div>
+    </div>
+    {% if form.first_name.errors %}<div class="field-errors">{{ form.first_name.errors|join:", " }}</div>{% endif %}
+    {% if form.last_name.errors %}<div class="field-errors">{{ form.last_name.errors|join:", " }}</div>{% endif %}
+    <div class="form-row">
+      <label class="form-label" for="id_email">Email</label>
+      <div style="flex:1">
+        <input class="form-control" id="id_email" name="{{ form.email.html_name }}" type="email"
+          value="{{ form.email.value|default:user.email }}" required />
+        {% if form.email.errors %}
+        <div class="field-errors">{{ form.email.errors|join:", " }}</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-label" for="id_bio">Bio</label>
+      <div style="flex:1">
+        <textarea class="form-control" id="id_bio" name="{{ form.bio.html_name }}"
+          maxlength="300">{{ form.bio.value|default:user.bio }}</textarea>
+        {% if form.bio.errors %}<div class="field-errors">{{ form.bio.errors|join:", " }}</div>{% endif %}
+        <div class="note">Qisqacha o'zing haqida (max 300 belgi).</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-label" for="id_profile_picture">Profile picture</label>
+      <div style="flex:1">
+        <input class="form-control" id="id_profile_picture" name="{{ form.profile_picture.html_name }}" type="file"
+          accept="image/png,image/jpeg" />
+        {% if form.profile_picture.errors %}<div class="field-errors">{{ form.profile_picture.errors|join:", " }}</div>
+        {% endif %}
+        <div class="note">Agar rasm yuklamasangiz, avvalgi rasm saqlanadi.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; margin-top:14px;">
+      <button type="submit" class="btn btn-primary">Save profile</button>
+      <a href="{% url 'app:prof' username=user.username %}" class="btn">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const fileInput = document.getElementById('id_profile_picture');
+    const preview = document.getElementById('avatarPreview');
+
+    if (fileInput && preview) {
+      fileInput.addEventListener('change', function (e) {
+        const f = e.target.files[0];
+        if (!f) return;
+        const allowed = ['image/jpeg', 'image/png', 'image/jpg'];
+        if (!allowed.includes(f.type)) {
+          alert('Iltimos JPG yoki PNG rasm yuklang.');
+          fileInput.value = '';
+          return;
+        }
+        if (f.size > 5 * 1024 * 1024) {
+          alert('Rasm hajmi 5MB dan oshmasin.');
+          fileInput.value = '';
+          return;
+        }
+        const url = URL.createObjectURL(f);
+        preview.style.backgroundImage = `url(${url})`;
+      });
+    }
+
+    const form = document.getElementById('editProfileForm');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        const username = document.getElementById('id_username');
+        if (!username || username.value.trim() === '') {
+          e.preventDefault();
+          alert('Username bo\'sh bo\'lishi mumkin emas.');
+          username.focus();
+        }
+      });
+    }
+  });
+</script>
 {% endblock content %}

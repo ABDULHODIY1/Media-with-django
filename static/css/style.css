@@ -1,66 +1,73 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-body{
+body {
     background-color: rgb(0, 0, 0);
     height: max-content;
 }
-a,h5{
-    width: fit-content;
+
+a,
+h5 {
     color: rgb(189, 189, 189);
     text-decoration: none;
     width: fit-content;
 }
-#auth{
+
+#auth {
     position: relative;
-    bottom: 10px;
+    margin: 8px;
+    top: 3px;
     width: fit-content;
 }
-nav{
 
+nav {
     margin: 30px;
     width: 100%;
 }
-.nav_container{
+
+.nav_container {
     max-width: 100%;
     box-sizing: border-box;
     justify-content: center;
     -webkit-backdrop-filter: blur(22px);
-    margin: 40px;
-    position: fixed ;
+    position: fixed;
     display: inline-flex;
     gap: 30px;
-    right:0px;
-    backdrop-filter: blur(22px );
-    border-bottom: rgb(35, 35, 35) 0.1px solid;
+    right: 0;
+    backdrop-filter: blur(22px);
+    border-bottom: 0.1px solid rgb(35, 35, 35);
     box-shadow: inset rgb(3, 3, 3) 1px 1px 100px 20px;
     z-index: 1;
     padding: 30px;
     margin: 0;
 }
-h1,h2,h3,h4,h5,h6,p{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     color: rgb(181, 181, 181);
 }
-.blog_card{
+
+.blog_card {
     position: relative;
     top: 40px;
-    background-color:rgb(14, 14, 14) ;
+    background-color: rgb(14, 14, 14);
     width: 100%;
     margin-bottom: 10vh;
     margin: 10px;
-    padding: 20px 0 20px 0;
+    padding: 20px 0;
     border-radius: 10%;
-    border: rgb(87, 87, 87) 0.3px solid;
+    border: 0.3px solid rgb(87, 87, 87);
 }
 
-#auth{
-    margin: 8px;
-    top: 3px;
-}
 .blog_card_grid {
     background-color: rgb(14, 14, 14);
     border: 0.3px solid rgb(87, 87, 87);
@@ -70,7 +77,6 @@ h1,h2,h3,h4,h5,h6,p{
     height: fit-content;
     flex-direction: column;
     justify-content: space-between;
-    /* height: 450px; */
     box-sizing: border-box;
 }
 
@@ -85,91 +91,87 @@ h1,h2,h3,h4,h5,h6,p{
 .media_wrapper video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* MUHIM: sifatli, lekin ekranni to‘liq qoplaydi */
+    object-fit: cover;
     display: block;
 }
 
-#icon_save{
+#icon_save {
     fill: white;
     position: absolute;
     right: 28px;
     bottom: 20px;
 }
 
-#icon_save:active{
+#icon_save:active {
     width: 30px;
     height: 30px;
 }
 
-#Blog_container{
-    width: fit-content;
+#Blog_container {
     position: relative;
     display: grid;
     top: 100px;
     gap: 40px;
     width: 465.44px;
     padding-bottom: 300px;
+}
 
-  }
-
-/* Grid konteyner */
 #Blog_container_grid {
     position: relative;
     top: 300px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* auto auto auto o‘rniga yaxshiroq */
-    gap: 20px; /* kartochkalar orasidagi masofa */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     padding: 0 20px;
 }
 
-
-#like{
+#like {
     fill: white;
     position: absolute;
     left: 7%;
     top: 89.5%;
-    margin-right:30px ;
-
+    margin-right: 30px;
 }
 
-#like:active{
+#like:active {
     width: 30px;
     height: 30px;
 }
-#save_count{
+
+#save_count {
     width: fit-content;
     position: relative;
     left: 34%;
     bottom: 0px;
 }
 
-#like_count{
+#like_count {
     width: fit-content;
     position: relative;
     right: 31%;
     top: 21px;
 }
-.saved{
+
+.saved {
     display: inline-block;
     width: 100%;
     height: fit-content;
 }
 
-
-.profile_continer{
+.profile_continer {
     position: relative;
     top: 80px;
     height: 240px;
     box-shadow: white 0px 0px 1px 0px;
-    background-color:rgb(19, 18, 18);
-    
+    background-color: rgb(19, 18, 18);
 }
-.empty_page{
+
+.empty_page {
     position: relative;
     top: 450px;
 }
 
-#Profile_image{
+#Profile_image {
     width: 150px;
     height: 150px;
     background-size: cover;
@@ -177,54 +179,47 @@ h1,h2,h3,h4,h5,h6,p{
     bottom: 1px;
     right: 35%;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
     box-shadow: 1px 0px 40px 1px rgb(35, 35, 35);
-    border: 0.1px white solid;
-    
+    border: 0.1px solid white;
 }
-label{
+
+label {
     position: absolute;
     top: 2vh;
     left: 22%;
     color: rgb(0, 251, 4);
     font-size: 25px;
 }
-.ownerStack{
+
+.ownerStack {
     color: rgb(0, 121, 28);
     position: relative;
     right: 30px;
     bottom: 140px;
     height: fit-content;
 }
-#Username{
+
+#Username {
     position: relative;
     width: fit-content;
     top: -10px;
     right: 35%;
 }
 
-#search-input{
+#search-input {
     position: relative;
     top: 100px;
     color: rgb(195, 195, 195);
-    width:32%;
+    width: 32%;
     padding: 10px;
     border: none;
     border-radius: 30px;
     background: none;
     text-decoration: none;
     font-size: large;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
 }
 
-
-.footer{
+.footer {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -235,14 +230,15 @@ label{
     gap: 100px;
 }
 
-#BIO{
-     position: relative;
-     bottom: 130px;
-     right: 5%;
-     height: fit-content;
-     width: fit-content;
+#BIO {
+    position: relative;
+    bottom: 130px;
+    right: 5%;
+    height: fit-content;
+    width: fit-content;
 }
-.aboutlink{
+
+.aboutlink {
     position: relative;
     bottom: 130px;
     width: fit-content;
@@ -254,100 +250,99 @@ label{
     grid-template-columns: auto auto auto;
 }
 
-#Links{
+#Links {
     color: aqua;
 }
 
-.followers{
+.followers {
     position: relative;
     width: fit-content;
     left: 30%;
     bottom: 192px;
-
 }
-#followers{
+
+#followers {
     position: relative;
     color: rgb(255, 255, 255);
     top: 10px;
-    right:777px;
+    right: 777px;
 }
 
-h1{
+h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
     color: white;
     position: relative;
-    right:777px;
+    right: 777px;
     top: 10px;
-    
 }
 
-#subscribe{
+#subscribe {
     color: black;
-    border: wheat;
-    border-bottom:1px;
     background: white;
     position: relative;
     bottom: 10vh;
     right: 14%;
     border-radius: 20px;
-    padding: 5px 30px 5px 30px; 
-    box-shadow: rgb(0, 0, 0) 0px 0px 5px 1px ;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+    padding: 5px 30px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 5px 1px;
+    border: 1px solid wheat;
 }
-.search_deep{
+
+.search_deep {
     margin-bottom: 200px;
 }
+
 .G29dLm8y {
     column-count: 3;
     column-gap: 1rem;
     padding: 1rem;
-  }
-  
-  .f8RkXl92 {
+}
+
+.f8RkXl92 {
     break-inside: avoid;
     margin-bottom: 1rem;
     border-radius: 12px;
     overflow: hidden;
     background: #111;
-    box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
-  }
-  
-  .f8RkXl92:hover {
+}
+
+.f8RkXl92:hover {
     transform: scale(1.03);
-  }
-  
-  .yT7lPz3x {
+}
+
+.yT7lPz3x {
     width: 100%;
     height: auto;
     display: block;
-  }
-  
-  .T19cV0 {
+}
+
+.T19cV0 {
     padding: 0.5rem 1rem;
     font-size: 14px;
     color: #ccc;
-  }
-.video_size_post{
+}
+
+.video_size_post {
     padding-top: 30px;
     padding-bottom: 10px;
     width: 100%;
     height: 300px;
 }
-#framesize{
-   width:100%;
-   height:300px;
-  }
-.pda23{
+
+#framesize {
+    width: 100%;
+    height: 300px;
+}
+
+.pda23 {
     width: 300px;
     height: 300px;
 }
 
-#cseh3323{
+#cseh3323 {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 0;
@@ -356,127 +351,121 @@ h1{
 }
 
 @media (max-width: 1000px) {
-    /* Profil konteyner markazlashtiriladi va tartiblanadi */
     .profile_continer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
     }
-  
-    #Profile_image {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      position: relative;
-      bottom: 2vh;
-      margin-bottom: 10px;
-    }
-    label{
 
+    #Profile_image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        position: relative;
+        bottom: 2vh;
+        margin-bottom: 10px;
+    }
+
+    label {
         left: 50px;
     }
-  
+
     #Username {
-      font-size: 24px;
-      position: relative;
-      top: -40px;
+        font-size: 24px;
+        position: relative;
+        top: -40px;
     }
-  
+
     #BIO {
-      font-size: 14px;
-      padding: 0 10px;
-      position: relative;
-      left: 10%;
+        font-size: 14px;
+        padding: 0 10px;
+        position: relative;
+        left: 10%;
     }
-  
+
     .aboutlink {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
     }
-  
+
     #Links {
-      font-size: 14px;
-      padding: 8px 12px;
+        font-size: 14px;
+        padding: 8px 12px;
     }
-  
+
     #subscribe {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
     }
-  
+
     .followers {
-      margin-bottom: 5px;
-      position: relative;
-      left: 37rem;
+        margin-bottom: 5px;
+        position: relative;
+        left: 37rem;
     }
-  
-    /* Blog kartalar grid formatdan 1 ustunli layoutga o‘tadi */
+
     #Blog_container_grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 10px;
-      top: 10vh; /* unnecessary offset removed */
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+        top: 10vh;
     }
-  
+
     .blog_card_grid {
         position: relative;
         top: 30px;
-      width: 100%;
-      height: auto;
-      padding: 15px;
-      border-radius: 8px;
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border-radius: 8px;
     }
-  
+
     .media_wrapper {
-      height: 200px; /* biroz kichiklashtirildi */
+        height: 200px;
     }
-  
+
     .media_wrapper img,
     .media_wrapper video {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
-  
+
     #auth {
-      font-size: 13px;
-      margin: 5px 0;
+        font-size: 13px;
+        margin: 5px 0;
     }
-  
+
     .Info {
-      font-size: 14px;
-      margin-top: 10px;
+        font-size: 14px;
+        margin-top: 10px;
     }
-  }
-.filter{
+}
+
+.filter {
     position: relative;
     top: 30px;
 }
 
-#Log_out{
+#Log_out {
     position: relative;
-    /* style */
-    top: 39vh;
+    top: 10vh;
     background: white;
+    right: 100px;
     border: none;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     border-radius: 50px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
-    
 }
 
-#bt_set{
+#bt_set {
     position: relative;
     left: 35%;
     border: none;
@@ -485,22 +474,15 @@ h1{
     top: 25px;
     background: none;
     color: white;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
 }
-.popups{
+
+.popups {
     width: fit-content;
     position: relative;
     left: 33%;
 }
 
-/* SETTINGS */
-
-
-.settings_xts{
-    content:" ";
+.settings_xts {
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -511,9 +493,9 @@ h1{
     -webkit-backdrop-filter: blur(22px);
     backdrop-filter: blur(22px);
     z-index: 999;
-    
 }
-#x_set{
+
+#x_set {
     position: relative;
     left: 89.5%;
     bottom: 47vh;
@@ -521,15 +503,12 @@ h1{
     height: 32px;
     background: none;
     border-radius: 22px;
-    -webkit-border-radius: 22px;
-    -moz-border-radius: 22px;
-    -ms-border-radius: 22px;
-    -o-border-radius: 22px;
     border: none;
     font-size: 32px;
     color: white;
 }
-li{
+
+li {
     display: grid;
     width: fit-content;
     height: fit-content;
@@ -537,9 +516,7 @@ li{
     gap: 10px;
 }
 
-/* LOGIN */
-
-.login_sjfne{
+.login_sjfne {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -547,39 +524,27 @@ li{
     align-items: center;
 }
 
-.v{
+.v {
     display: grid;
     justify-content: center;
     align-items: center;
-    background-color:rgb(14, 14, 14);
+    background-color: rgb(14, 14, 14);
     padding: 300px;
     border-radius: 22px;
-    -webkit-border-radius: 22px;
-    -moz-border-radius: 22px;
-    -ms-border-radius: 22px;
-    -o-border-radius: 22px;
 }
-/* #id_password{}
-#id_username{} */
 
-
-.settings_btn_link{
+.settings_btn_link {
     position: relative;
     bottom: 39vh;
     background: white;
     padding: 10px;
     color: black;
     border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
     border: none;
     height: 40px;
 }
-/* UPLOAD */
-.is_post_reel_{
-    content:" ";
+
+.is_post_reel_ {
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -592,15 +557,16 @@ li{
     z-index: 999;
 }
 
-#UPLOAD{
+#UPLOAD {
     position: relative;
-    background:none;
+    background: none;
     border: none;
     color: white;
     bottom: 3px;
     float: left;
 }
-#x_upload{
+
+#x_upload {
     position: relative;
     background: none;
     border: none;
@@ -609,32 +575,30 @@ li{
     bottom: 46vh;
 }
 
-#video_a_btn,#video_a_btnWAi,#photo_a_btn,#photo_a_btnWAi{
+#video_a_btn,
+#video_a_btnWAi,
+#photo_a_btn,
+#photo_a_btnWAi {
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     border: inset white 0.1px solid;
     border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
     box-shadow: inset #ffffff 0px 0px 5px 0.1px;
 }
-/* .btns
-    
-} */
 
-#author_name{
-    padding: 30px ;
+#author_name {
+    padding: 30px;
 }
-#x1sqx{
+
+#x1sqx {
     padding-top: 30px;
     padding-bottom: 10px;
     width: 100%;
     height: auto;
 }
-.TopPixel{
+
+.TopPixel {
     position: relative;
     top: 300px;
- }
+}
