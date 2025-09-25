@@ -18,9 +18,12 @@
       <a id="Home" href="{% url 'app:home' %}">
         <h5>PID</h5>
       </a>
+      {% if user.is_authenticated %}
       <a id="Saved" href="{% url 'app:saved' %}">
         <h5>Saved</h5>
       </a>
+         {% else %}
+        {% endif %}
       <a id="Blog" href="{% url 'app:blog' %}">
         <h5>Blogs</h5>
       </a>
