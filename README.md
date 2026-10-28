@@ -40,3 +40,21 @@ Foydalanuvchilar **video blog** va **rasm shaklidagi postlar** joylashi, izohlas
    ```bash
    https://github.com/ABDULHODIY1/Media-with-django.git
    cd pid
+
+## ⚙️ Muhit o‘zgaruvchilari (environment variables)
+
+Lokal ishlab chiqishda hech narsa sozlash shart emas — standart qiymatlar avvalgidek ishlaydi.
+Serverga (production) chiqarishda quyidagilarni o‘rnating:
+
+| O‘zgaruvchi | Standart qiymat | Izoh |
+|---|---|---|
+| `DJANGO_DEBUG` | `true` | Production'da `false` qiling |
+| `DJANGO_SECRET_KEY` | (faqat DEBUG'da ishlaydigan dev kalit) | `DJANGO_DEBUG=false` bo‘lsa majburiy |
+| `DJANGO_ALLOWED_HOSTS` | DEBUG'da `*`, aks holda `localhost,127.0.0.1` | Vergul bilan: `example.com,www.example.com` |
+| `DJANGO_CSRF_TRUSTED_ORIGINS` | bo‘sh | Masalan: `https://example.com` |
+| `POSTGRES_DB` / `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_HOST` / `POSTGRES_PORT` | `mydatabase` / `thony123` / `mypassword` / `127.0.0.1` / `5432` | PostgreSQL ulanishi |
+
+Yangi maxfiy kalit yaratish:
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
