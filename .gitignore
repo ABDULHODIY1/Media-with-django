@@ -13,3 +13,6 @@ icons.html
 image.jpg
 whatsthis.py
 app/migrations
+__pycache__/
+*.py[cod]
+.DS_Store
